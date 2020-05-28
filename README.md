@@ -359,6 +359,8 @@ INSERT INTO `countries`(`country_id`, `country_name`, `region_id`) values
 
 21. Rédigez une requête pour afficher le nom (prénom, nom) et l'ID du département de tous les employés des départements 30 ou 100 par ordre croissant.
 
+<!-- SELECT `first_name`, `last_name`,`department_id` FROM `employees` WHERE department_id IN ( 30, 100 ) ORDER BY `department_id` ASC -->
+
 <!-- SELECT `first_name`, `last_name`,`department_id` FROM `employees` WHERE `department_id`= 30 OR `department_id` = 100 ORDER BY `department_id` ASC -->
 
 22. Rédigez une requête pour afficher le nom (prénom, nom) et le salaire de tous les employés dont le salaire ne se   situe pas dans la fourchette de 10 000 à 15 000 dollars et qui se trouvent dans le département 30 ou 100.
@@ -369,11 +371,16 @@ INSERT INTO `countries`(`country_id`, `country_name`, `region_id`) values
 
 <!-- SELECT `first_name`, `last_name`, `hire_date` FROM `employees` WHERE `hire_date` BETWEEN '1987-01-01' AND '1987-12-31' -->
 
+
+<!-- SELECT first_name,last_name, YEAR(hire_date) FROM `employees` -->
+
 <!-- SELECT first_name,last_name, hire_date FROM `employees` WHERE hire_date LIKE '1987%' -->
 
 24. Rédigez une requête pour trouver le nom (prénom, nom) de tous les employés qui travaillent dans le département informatique.
 
-<!-- SELECT employees.first_name, employees.last_name, departments.department_name FROM employees ,departments WHERE departments.department_name like  'IT%' -->
+<!-- SELECT e.first_name, e.last_name, d.department_name FROM employees e INNER JOIN departments d WHERE d.department_id = e.department_id AND d.department_name like 'IT%'  -->
+
+
 
 <!-- SELECT first_name,last_name,department_id FROM `employees` WHERE department_id IN (SELECT department_id FROM `departments` WHERE department_name LIKE 'IT%') -->
 
@@ -383,10 +390,14 @@ INSERT INTO `countries`(`country_id`, `country_name`, `region_id`) values
 <!-- SELECT  departments.location_id, locations.location_id, locations.street_address, locations.postal_code, locations.city, locations.state_province, locations.country_id, countries.country_id,  departments.department_name FROM `locations`,  `countries`, `departments` WHERE locations.country_id = countries.country_id AND  locations.location_id = departments.location_id -->
 
 
+
+
 <!-- SELECT departments.department_id, departments.department_name , locations.location_id , locations.street_address, locations.city, locations.state_province, countries.country_name FROM departments , locations, countries WHERE (departments.location_id = locations.location_id) AND (locations.country_id = countries.country_id) -->
 26. Rédigez une requête pour afficher le titre du poste et le salaire moyen des employés. 
+<!-- 
+SELECT j.job_id, j.job_title, e.job_id, AVG(e.salary) AS salaire_moyenne FROM jobs j INNER JOIN employees e WHERE j.job_id = e.job_id GROUP BY job_title -->
 
-<!-- SELECT jobs.job_id, jobs.job_title,  employees.job_id, AVG(employees.salary) AS Moyen_salary FROM `jobs`,  `employees` WHERE jobs.job_id = employees.job_id GROUP BY job_title -->
+<!-- SELECT jobs.job_id, jobs.job_title,  employees.job_id, AVG(employees.salary) AS salaire_moyenne FROM `jobs`,  `employees` WHERE jobs.job_id = employees.job_id GROUP BY job_title -->
 
 27. Rédigez une requête pour calculer l'âge en année.
 
